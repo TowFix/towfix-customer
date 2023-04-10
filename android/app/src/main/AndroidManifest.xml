@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.towfix">
+    package="com.towfix.app">
    <application
         android:label="towfix"
         android:name="${applicationName}"

@@ -1,4 +1,4 @@
-package com.example.towfix
+package com.towfix.app
 
 import io.flutter.embedding.android.FlutterActivity
 
