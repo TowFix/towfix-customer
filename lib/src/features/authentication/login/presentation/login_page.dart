@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:towfix/core/constants/assets/images.dart';
 import 'package:towfix/core/constants/color/colors.dart';
+import 'package:towfix/src/features/authentication/signup/presentation/pages/sign_up_page.dart';
+
+import '../../widgets/other_authentication_method.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   static const id = '/login';
@@ -16,29 +19,23 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        body: Padding(
+        body: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                flex: 2,
-                child: SizedBox(
-                    width: double.infinity,
-                    child: Image.asset(
-                      Images.auth,
-                      fit: BoxFit.cover,
-                    )),
-              ),
-              Expanded(
-                flex: 1,
-                child: Text(
-                  'Welcome to TowFix.',
-                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).primaryColor),
-                  textScaleFactor: 0.8,
-                ),
+              SizedBox(
+                  width: double.infinity,
+                  child: Image.asset(
+                    Images.auth,
+                    fit: BoxFit.cover,
+                  )),
+              Text(
+                'Welcome to TowFix.',
+                style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).primaryColor),
+                textScaleFactor: 0.8,
               ),
               // SizedBox(height: 10),
               Text(
@@ -99,27 +96,17 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   ),
                 ),
               ),
-              Row(children: const [
-                Expanded(child: Divider()),
-                Text('or Sign In with'),
-                Expanded(child: Divider()),
-              ]),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(
-                      onPressed: () {},
-                      child: Image.asset(Images.facebookIcon)),
-                  TextButton(
-                      onPressed: () {}, child: Image.asset(Images.googleIcon)),
-                  TextButton(
-                      onPressed: () {}, child: Image.asset(Images.appleIcon)),
-                ],
+              OtherAuthenticationMethod(
+                otherMethodLabel: 'or Sign In with',
               ),
-              // Spacer(),
               Center(
                 child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => const SignUpPage()));
+                    },
                     child: RichText(
                       text: TextSpan(
                           text: 'Don\'t have an account?',
@@ -139,7 +126,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           ]),
                     )),
               ),
-              const SizedBox(height: 20),
             ],
           ),
         ));
