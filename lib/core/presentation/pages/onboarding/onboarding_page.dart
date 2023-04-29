@@ -135,7 +135,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                                             onLoading: () {
                                               Timer(
                                                 const Duration(seconds: 5),
-                                                () => Navigator.push(
+                                                () => Navigator.pushReplacement(
                                                   context,
                                                   MaterialPageRoute(
                                                     builder: (context) =>
