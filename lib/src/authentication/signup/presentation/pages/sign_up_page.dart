@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../../../core/constants/color/colors.dart';
+import '../../../../../core/constants/color/colors.dart';
 import '../../../widgets/other_authentication_method.dart';
 
 class SignUpPage extends ConsumerStatefulWidget {

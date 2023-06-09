@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:towfix/core/constants/assets/images.dart';
 import 'package:towfix/core/constants/color/colors.dart';
-import 'package:towfix/src/features/authentication/signup/presentation/pages/sign_up_page.dart';
+import 'package:towfix/src/authentication/signup/presentation/pages/sign_up_page.dart';
+import 'package:towfix/src/home/presentation/pages/home.dart';
 
 import '../../widgets/other_authentication_method.dart';
 
@@ -91,7 +92,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 child: SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => const HomeScreen()));
+                    },
                     child: Text('Sign In'),
                   ),
                 ),

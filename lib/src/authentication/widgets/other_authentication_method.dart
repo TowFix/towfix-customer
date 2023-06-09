@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/constants/assets/images.dart';
+import '../../../core/constants/assets/images.dart';
 
 class OtherAuthenticationMethod extends StatelessWidget {
   final String otherMethodLabel;
