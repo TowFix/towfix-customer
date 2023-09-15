@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -49,21 +43,43 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyA8_tAVl0x0FOfKig_G1P5U048D8KqqlGI',
+    appId: '1:361987235930:web:6193e12221af613697b863',
+    messagingSenderId: '361987235930',
+    projectId: 'towfix-abd8c',
+    authDomain: 'towfix-abd8c.firebaseapp.com',
+    storageBucket: 'towfix-abd8c.appspot.com',
+    measurementId: 'G-YSK2XN6LQN',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBLMH4uJAneCB7z6GGN1OBzZrtBMXzlVds',
-    appId: '1:146354161007:android:0ce4b13bfa9bb5ea4b149a',
-    messagingSenderId: '146354161007',
-    projectId: 'tow-fix',
-    storageBucket: 'tow-fix.appspot.com',
+    apiKey: 'AIzaSyBeK2Vtg1aIdC5DSSi7vbeLNC5X60iQjSQ',
+    appId: '1:361987235930:android:0b84c65d7e588fa797b863',
+    messagingSenderId: '361987235930',
+    projectId: 'towfix-abd8c',
+    storageBucket: 'towfix-abd8c.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyANeBkyqRBHtt9_3heyna0qdTZwhOVERYk',
-    appId: '1:146354161007:ios:6487121bec9a3bc94b149a',
-    messagingSenderId: '146354161007',
-    projectId: 'tow-fix',
-    storageBucket: 'tow-fix.appspot.com',
-    iosClientId: '146354161007-tk5ardsbdjp8f26gog033lttvelq4rjb.apps.googleusercontent.com',
+    apiKey: 'AIzaSyB8jddxR1QJnWGjzcIFBxZTKVEhT02dv0c',
+    appId: '1:361987235930:ios:dec9cd82f513df8697b863',
+    messagingSenderId: '361987235930',
+    projectId: 'towfix-abd8c',
+    storageBucket: 'towfix-abd8c.appspot.com',
+    iosClientId:
+        '361987235930-08o1ha134ls7nd43571ronqcu78dlg6s.apps.googleusercontent.com',
+    iosBundleId: 'com.towfix.app',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyB8jddxR1QJnWGjzcIFBxZTKVEhT02dv0c',
+    appId: '1:361987235930:ios:dec9cd82f513df8697b863',
+    messagingSenderId: '361987235930',
+    projectId: 'towfix-abd8c',
+    storageBucket: 'towfix-abd8c.appspot.com',
+    iosClientId:
+        '361987235930-08o1ha134ls7nd43571ronqcu78dlg6s.apps.googleusercontent.com',
     iosBundleId: 'com.towfix.app',
   );
 }
