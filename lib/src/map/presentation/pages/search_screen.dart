@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:towfix/src/map/presentation/pages/select_tow_truck_page.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({super.key});
@@ -25,7 +26,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
           ),
         ),
         title: Text(
-          'Good afternoon, Trudy',
+          'Choose Location',
           style: Theme.of(context).textTheme.titleMedium,
         ),
       ),
@@ -105,6 +106,10 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
             ListView.separated(
               itemBuilder: (context, index) {
                 return ListTile(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => SelectTowTruckPage()));
+                  },
                   leading: Icon(
                     Icons.location_on,
                     color: Colors.black.withOpacity(0.2),
