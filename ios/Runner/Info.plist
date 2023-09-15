@@ -49,5 +49,20 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>NSPhotoLibraryUsageDescription</key>
+	<string>TowFix needs access to your gallery </string>
+	<key>NSCameraUsageDescription</key>
+	<string> TowFix needs access to your gallery </string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>ToeFix needs access to your gallery </string>
+	<key>NSLocationAlwaysAndWhenInUsageDescription</key>
+	<string>ToeFixp want's to access your location to get address</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>ToeFix app want's to access your location to get address.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>ToeFix app want's to access your location to get address.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string> ToeFix want's to access your location to get address.</string>
+	
 	</dict>
 </plist>
