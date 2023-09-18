@@ -11,7 +11,7 @@ part 'result.g.dart';
 class GeocodeResult with _$GeocodeResult {
   factory GeocodeResult({
     @JsonKey(name: 'address_components')
-    List<AddressComponent>? addressComponents,
+        List<AddressComponent>? addressComponents,
     @JsonKey(name: 'formatted_address') String? formattedAddress,
     Geometry? geometry,
     @JsonKey(name: 'place_id') String? placeId,

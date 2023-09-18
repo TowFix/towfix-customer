@@ -7,6 +7,7 @@ import 'package:towfix/core/data/dtos/vehicle/vehicle.dart';
 import 'package:towfix/core/presentation/pages/loading/splash_loading_page.dart';
 import 'package:towfix/src/authentication/login/presentation/login_page.dart';
 import 'package:towfix/src/home/presentation/pages/home.dart';
+import 'package:towfix/src/map/presentation/pages/map_directions_screen.dart';
 import 'package:towfix/src/tow_truck_service/pages/add_vehicle_page.dart';
 import 'package:towfix/src/tow_truck_service/pages/select_vehicle_page.dart';
 import 'package:towfix/src/towfix_services/presentation/pages/towfix_services_map_screen.dart';
@@ -28,6 +29,7 @@ enum AppRoute {
   requestTowTruck,
   chooseLocation,
   mapServices,
+  directionsService,
 
   signInWithEmail,
   getStarted,
@@ -144,6 +146,15 @@ GoRouter goRouter(GoRouterRef ref) {
                             key: state.pageKey,
                             fullscreenDialog: true,
                             child: const TowfixServicesMapPage(),
+                          ),
+                      routes: []),
+                  GoRoute(
+                      path: 'directions',
+                      name: AppRoute.directionsService.name,
+                      pageBuilder: (context, state) => MaterialPage(
+                            key: state.pageKey,
+                            fullscreenDialog: true,
+                            child: const MapDirectionsScreen(),
                           ),
                       routes: []),
                 ]),
