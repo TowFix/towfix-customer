@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:towfix/core/data/dtos/directions_model/directions_model.dart';
 import 'package:towfix/core/data/dtos/failure/failure.dart';
 import 'package:towfix/core/data/dtos/geocoding_model/geocoding_model.dart';
 import 'package:towfix/core/data/dtos/places/places.dart';
@@ -18,6 +20,10 @@ abstract class MapServiceRepository {
 
   /// geocoding by place id
   Future<Either<Failure, GeocodingModel>> getGeocodingByPlaceID(String query);
+
+  /// get directions
+  Future<Either<Failure, DirectionsModel>> getDirections(
+      {required LatLng origin, required LatLng destination});
 }
 
 final mapServiceRepositoryImplProvider =
@@ -99,6 +105,29 @@ class MapServicesRepositoryImpl extends MapServiceRepository {
         (response) async {
           final right = GeocodingModel.fromJson(response.data);
           log('-------------------\Geocoding $right');
+          return Right(right);
+        },
+      );
+    } catch (e) {
+      return const Left(
+          Failure.exception(message: 'Error retrieving places search results'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, DirectionsModel>> getDirections(
+      {required LatLng origin, required LatLng destination}) async {
+    try {
+      final result = await execute(
+          apiService.getDirections(destination: destination, origin: origin));
+
+      return result.fold(
+        (failure) {
+          return Left(failure);
+        },
+        (response) async {
+          final right = DirectionsModel.fromJson(response.data);
+          log('-------------------\nDirections $right');
           return Right(right);
         },
       );

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:towfix/core/application/env/env.dart';
 
 final clientProvider = Provider<Dio>((ref) =>
@@ -36,8 +37,30 @@ class MapServiceApi {
 
       // "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$query&types=establishment&location=37.76999%2C-122.44696&radius=500&key=AIzaSyDL_hAQJdEdP1WmJirJssWtR2NkDiU3FAs";
       // "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$query&types=establishmentkey=AIzaSyDL_hAQJdEdP1WmJirJssWtR2NkDiU3FAs";
-      final response = await dio
-          .get("geocode/json?place_id=$placeID&key=${Env.googleMapsApiKey}");
+      final response = await dio.get(
+        "geocode/json?place_id=$placeID&key=${Env.googleMapsApiKey}",
+      );
+
+      return response;
+    } catch (e) {
+      final dioError = e as DioError;
+      return dioError.response!;
+    }
+  }
+
+  Future<Response> getDirections(
+      {required LatLng origin, required LatLng destination}) async {
+    try {
+      // final endpoint =
+
+      // final url =
+      //     "https://maps.googleapis.com/maps/api/";
+
+      // "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$query&types=establishment&location=37.76999%2C-122.44696&radius=500&key=AIzaSyDL_hAQJdEdP1WmJirJssWtR2NkDiU3FAs";
+      // "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$query&types=establishmentkey=AIzaSyDL_hAQJdEdP1WmJirJssWtR2NkDiU3FAs";
+      final response = await dio.get(
+        "directions/json?destination=${destination.latitude},${destination.longitude}&origin=${origin.latitude},${origin.longitude}&key=${Env.googleMapsApiKey}",
+      );
 
       return response;
     } catch (e) {

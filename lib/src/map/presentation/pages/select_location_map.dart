@@ -78,6 +78,9 @@ class _SelectLocationMapState extends ConsumerState<SelectLocationMap> {
                 child: GoogleMap(
                   mapType: MapType.normal,
                   initialCameraPosition: _kGooglePlex,
+                  myLocationButtonEnabled: true,
+                  myLocationEnabled: true,
+                  compassEnabled: true,
                   onMapCreated: (GoogleMapController controller) {
                     _controller.complete(controller);
                   },
@@ -134,8 +137,9 @@ class _SelectLocationMapState extends ConsumerState<SelectLocationMap> {
               ),
             ],
           ),
-          Align(
-            alignment: Alignment.center,
+          Positioned(
+            top: context.mediaQuery.size.height * 0.32,
+            left: context.mediaQuery.size.width * 0.44,
             child: Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

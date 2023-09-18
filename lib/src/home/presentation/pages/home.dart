@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,9 +9,12 @@ import 'package:rating/rating.dart';
 import 'package:towfix/core/application/app_router/app_router.dart';
 import 'package:towfix/core/constants/assets/images.dart';
 import 'package:towfix/core/constants/assets/svgs.dart';
+import 'package:towfix/core/data/dtos/service_request/service_request.dart';
 import 'package:towfix/core/providers/common.dart';
 
 import 'package:towfix/src/home/presentation/widgets/recent_trips_widget.dart';
+import 'package:towfix/src/map/presentation/controller/search_controller.dart';
+import 'package:towfix/src/map/presentation/pages/map_directions_screen.dart';
 
 import '../../../map/presentation/pages/search_screen.dart';
 import '../../../tow_truck_service/pages/empty_vehicle_page.dart';
@@ -48,6 +53,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     final cacheService = ref.read(cacheServiceProvider);
     final user = cacheService.profile;
+
+    final mapServiceControllerReader =
+        ref.read(mapServiceControllerProvider.notifier);
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -149,16 +157,32 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           //     context,
                           //     MaterialPageRoute(
                           //         builder: (context) =>
-                          //             const EmptyVehicleScreen()));
+                          //                   //             const EmptyVehicleScreen()));
+                          //                   final towTruckServiceLevelReader =
+                          // ref.read(towTruckServiceLevelProvider.notifier);
+
+                          mapServiceControllerReader.serviceType =
+                              ServiceType.towing;
+                          // tow
 
                           context.pushNamed(AppRoute.selectVehicle.name);
                         },
                       ),
-                      const TowRequestCard(
+                      TowRequestCard(
+                        onPressed: () {
+                          log('inside merchanic shop');
+                          mapServiceControllerReader.serviceType =
+                              ServiceType.mechanicRequest;
+                          context.pushNamed(AppRoute.merchanicShops.name);
+                        },
                         title: 'Request Mechanic',
                         svg: Svgs.mechanicfix,
                       ),
-                      const TowRequestCard(
+                      TowRequestCard(
+                        onPressed: () {
+                          mapServiceControllerReader.serviceType =
+                              ServiceType.merchanicShop;
+                        },
                         title: 'Mechanic Shop',
                         svg: Svgs.mechanicshop,
                       ),

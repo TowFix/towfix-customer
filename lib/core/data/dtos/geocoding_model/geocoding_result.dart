@@ -10,7 +10,7 @@ part 'geocoding_result.g.dart';
 class GeocodingResult with _$GeocodingResult {
   factory GeocodingResult({
     @JsonKey(name: 'address_components')
-    List<AddressComponent>? addressComponents,
+        List<AddressComponent>? addressComponents,
     @JsonKey(name: 'formatted_address') String? formattedAddress,
     Geometry? geometry,
     @JsonKey(name: 'place_id') String? placeId,

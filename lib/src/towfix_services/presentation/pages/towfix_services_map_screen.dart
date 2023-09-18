@@ -151,7 +151,7 @@ class _TowfixServicesMapPageState extends ConsumerState<TowfixServicesMapPage> {
           builder: (context, scrollController) {
             return Container(
               width: double.infinity,
-              decoration: BoxDecoration(color: Colors.red),
+              // decoration: BoxDecoration(color: Colors.red),
               child: ListView(
                 controller: scrollController,
                 children: [Text("I'll be ")],
@@ -159,111 +159,5 @@ class _TowfixServicesMapPageState extends ConsumerState<TowfixServicesMapPage> {
             );
           },
         ));
-  }
-
-  WoltModalSheetPage page1(
-      BuildContext modalSheetContext, TextTheme textTheme) {
-    return WoltModalSheetPage.withSingleChild(
-      hasSabGradient: false,
-      stickyActionBar: Padding(
-        padding: const EdgeInsets.all(_pagePadding),
-        child: Column(
-          children: [
-            ElevatedButton(
-              onPressed: () => Navigator.of(modalSheetContext).pop(),
-              child: const SizedBox(
-                height: _buttonHeight,
-                width: double.infinity,
-                child: Center(child: Text('Cancel')),
-              ),
-            ),
-            const SizedBox(height: 8),
-            ElevatedButton(
-              onPressed: () =>
-                  pageIndexNotifier.value = pageIndexNotifier.value + 1,
-              child: const SizedBox(
-                height: _buttonHeight,
-                width: double.infinity,
-                child: Center(child: Text('Next page')),
-              ),
-            ),
-          ],
-        ),
-      ),
-      topBarTitle: Text('Pagination', style: textTheme.titleSmall),
-      isTopBarLayerAlwaysVisible: true,
-      trailingNavBarWidget: IconButton(
-        padding: const EdgeInsets.all(_pagePadding),
-        icon: const Icon(Icons.close),
-        onPressed: Navigator.of(modalSheetContext).pop,
-      ),
-      child: const Padding(
-          padding: EdgeInsets.fromLTRB(
-            _pagePadding,
-            _pagePadding,
-            _pagePadding,
-            _bottomPaddingForButton,
-          ),
-          child: Text(
-            '''
-Pagination involves a sequence of screens the user navigates sequentially. We chose a lateral motion for these transitions. When proceeding forward, the next screen emerges from the right; moving backward, the screen reverts to its original position. We felt that sliding the next screen entirely from the right could be overly distracting. As a result, we decided to move and fade in the next page using 30% of the modal side.
-''',
-          )),
-    );
-  }
-
-  WoltModalSheetPage page2(
-      BuildContext modalSheetContext, TextTheme textTheme) {
-    return WoltModalSheetPage.withCustomSliverList(
-      stickyActionBar: Padding(
-        padding: const EdgeInsets.fromLTRB(
-            _pagePadding, _pagePadding / 4, _pagePadding, _pagePadding),
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.of(modalSheetContext).pop();
-            pageIndexNotifier.value = 0;
-          },
-          child: const SizedBox(
-            height: _buttonHeight,
-            width: double.infinity,
-            child: Center(child: Text('Close')),
-          ),
-        ),
-      ),
-      pageTitle: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: _pagePadding),
-        child: Text(
-          'Material Colors',
-          style:
-              textTheme.headlineMedium!.copyWith(fontWeight: FontWeight.bold),
-        ),
-      ),
-      heroImage: Image(
-        image: AssetImage(
-          Images.locationPicker,
-        ),
-        fit: BoxFit.cover,
-      ),
-      leadingNavBarWidget: IconButton(
-        padding: const EdgeInsets.all(_pagePadding),
-        icon: const Icon(Icons.arrow_back_rounded),
-        onPressed: () => pageIndexNotifier.value = pageIndexNotifier.value - 1,
-      ),
-      trailingNavBarWidget: IconButton(
-        padding: const EdgeInsets.all(_pagePadding),
-        icon: const Icon(Icons.close),
-        onPressed: () {
-          Navigator.of(modalSheetContext).pop();
-          pageIndexNotifier.value = 0;
-        },
-      ),
-      sliverList: SliverList(
-        delegate: SliverChildBuilderDelegate(
-          (_, index) => Container(
-            child: Text(index.toString()),
-          ),
-        ),
-      ),
-    );
   }
 }

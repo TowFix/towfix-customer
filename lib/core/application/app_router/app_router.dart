@@ -8,6 +8,7 @@ import 'package:towfix/core/presentation/pages/loading/splash_loading_page.dart'
 import 'package:towfix/src/authentication/login/presentation/login_page.dart';
 import 'package:towfix/src/home/presentation/pages/home.dart';
 import 'package:towfix/src/map/presentation/pages/map_directions_screen.dart';
+import 'package:towfix/src/merchanic_shop/presentations/merchanics.dart';
 import 'package:towfix/src/tow_truck_service/pages/add_vehicle_page.dart';
 import 'package:towfix/src/tow_truck_service/pages/select_vehicle_page.dart';
 import 'package:towfix/src/towfix_services/presentation/pages/towfix_services_map_screen.dart';
@@ -30,6 +31,7 @@ enum AppRoute {
   chooseLocation,
   mapServices,
   directionsService,
+  merchanicShops,
 
   signInWithEmail,
   getStarted,
@@ -78,23 +80,33 @@ GoRouter goRouter(GoRouterRef ref) {
           },
           routes: [
             GoRoute(
-                path: 'auth',
-                name: AppRoute.auth.name,
-                pageBuilder: (context, state) => MaterialPage(
-                      key: state.pageKey,
-                      fullscreenDialog: true,
-                      child: const LoginPage(),
-                    ),
-                routes: []),
+              path: 'auth',
+              name: AppRoute.auth.name,
+              pageBuilder: (context, state) => MaterialPage(
+                key: state.pageKey,
+                fullscreenDialog: true,
+                child: const LoginPage(),
+              ),
+              routes: [],
+            ),
             GoRoute(
                 path: 'home',
                 name: AppRoute.home.name,
                 pageBuilder: (context, state) => MaterialPage(
                       key: state.pageKey,
                       fullscreenDialog: true,
-                      child: Dashboard(),
+                      child: const Dashboard(),
                     ),
                 routes: [
+                  GoRoute(
+                      path: 'merchanic-shops',
+                      name: AppRoute.merchanicShops.name,
+                      pageBuilder: (context, state) => MaterialPage(
+                            key: state.pageKey,
+                            fullscreenDialog: true,
+                            child: const ListMerchanics(),
+                          ),
+                      routes: []),
                   GoRoute(
                     path: 'vehicles',
                     name: AppRoute.selectVehicle.name,

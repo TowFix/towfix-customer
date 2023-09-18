@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:towfix/core/application/app_router/app_router.dart';
 import 'package:towfix/core/presentation/pages/failure_page.dart';
 import 'package:towfix/core/providers/common.dart';
+import 'package:towfix/src/map/presentation/controller/search_controller.dart';
 import 'package:towfix/src/tow_truck_service/pages/empty_vehicle_page.dart';
 import 'package:ui_common/ui_common.dart';
 
@@ -17,6 +18,8 @@ class SelectVehiclePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final vehiclesAsyncValue = ref.watch(vehiclesProvider);
+    final mapServiceControllerReader =
+        ref.read(mapServiceControllerProvider.notifier);
     return vehiclesAsyncValue.when(
         data: (vehicles) {
           if (vehicles.isEmpty) {
@@ -37,11 +40,12 @@ class SelectVehiclePage extends ConsumerWidget {
                           final vehicle = vehicles[index];
                           return InkWell(
                             onTap: () {
+                              mapServiceControllerReader.vehicle = vehicle;
                               context.pushNamed(AppRoute.chooseLocation.name,
                                   extra: {'vehicle': vehicle});
-                              context.goNamed(
-                                AppRoute.chooseLocation.name,
-                              );
+                              // context.goNamed(
+                              //   AppRoute.chooseLocation.name,
+                              // );
                             },
                             child: Container(
                               padding: const EdgeInsets.all(10),

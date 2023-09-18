@@ -26,8 +26,11 @@ mixin _$ServiceRequest {
   ServiceType get serviceType => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
   RequestStatus get status => throw _privateConstructorUsedError;
-  Address get serviceLocation => throw _privateConstructorUsedError;
+  Address get origin => throw _privateConstructorUsedError;
   Address get destination => throw _privateConstructorUsedError;
+  @JsonKey(
+      readValue: JsonConverterWrapper.date, toJson: JsonConverterWrapper.toJson)
+  DateTime get requestDate => throw _privateConstructorUsedError;
   @JsonKey(
       readValue: JsonConverterWrapper.date, toJson: JsonConverterWrapper.toJson)
   DateTime get date => throw _privateConstructorUsedError;
@@ -51,8 +54,12 @@ abstract class $ServiceRequestCopyWith<$Res> {
       ServiceType serviceType,
       double amount,
       RequestStatus status,
-      Address serviceLocation,
+      Address origin,
       Address destination,
+      @JsonKey(
+          readValue: JsonConverterWrapper.date,
+          toJson: JsonConverterWrapper.toJson)
+      DateTime requestDate,
       @JsonKey(
           readValue: JsonConverterWrapper.date,
           toJson: JsonConverterWrapper.toJson)
@@ -60,7 +67,7 @@ abstract class $ServiceRequestCopyWith<$Res> {
 
   $ProfileCopyWith<$Res> get requester;
   $ProfileCopyWith<$Res> get servicer;
-  $AddressCopyWith<$Res> get serviceLocation;
+  $AddressCopyWith<$Res> get origin;
   $AddressCopyWith<$Res> get destination;
 }
 
@@ -83,8 +90,9 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
     Object? serviceType = null,
     Object? amount = null,
     Object? status = null,
-    Object? serviceLocation = null,
+    Object? origin = null,
     Object? destination = null,
+    Object? requestDate = null,
     Object? date = null,
   }) {
     return _then(_value.copyWith(
@@ -112,14 +120,18 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as RequestStatus,
-      serviceLocation: null == serviceLocation
-          ? _value.serviceLocation
-          : serviceLocation // ignore: cast_nullable_to_non_nullable
+      origin: null == origin
+          ? _value.origin
+          : origin // ignore: cast_nullable_to_non_nullable
               as Address,
       destination: null == destination
           ? _value.destination
           : destination // ignore: cast_nullable_to_non_nullable
               as Address,
+      requestDate: null == requestDate
+          ? _value.requestDate
+          : requestDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -145,9 +157,9 @@ class _$ServiceRequestCopyWithImpl<$Res, $Val extends ServiceRequest>
 
   @override
   @pragma('vm:prefer-inline')
-  $AddressCopyWith<$Res> get serviceLocation {
-    return $AddressCopyWith<$Res>(_value.serviceLocation, (value) {
-      return _then(_value.copyWith(serviceLocation: value) as $Val);
+  $AddressCopyWith<$Res> get origin {
+    return $AddressCopyWith<$Res>(_value.origin, (value) {
+      return _then(_value.copyWith(origin: value) as $Val);
     });
   }
 
@@ -175,8 +187,12 @@ abstract class _$$_ServiceRequestCopyWith<$Res>
       ServiceType serviceType,
       double amount,
       RequestStatus status,
-      Address serviceLocation,
+      Address origin,
       Address destination,
+      @JsonKey(
+          readValue: JsonConverterWrapper.date,
+          toJson: JsonConverterWrapper.toJson)
+      DateTime requestDate,
       @JsonKey(
           readValue: JsonConverterWrapper.date,
           toJson: JsonConverterWrapper.toJson)
@@ -187,7 +203,7 @@ abstract class _$$_ServiceRequestCopyWith<$Res>
   @override
   $ProfileCopyWith<$Res> get servicer;
   @override
-  $AddressCopyWith<$Res> get serviceLocation;
+  $AddressCopyWith<$Res> get origin;
   @override
   $AddressCopyWith<$Res> get destination;
 }
@@ -209,8 +225,9 @@ class __$$_ServiceRequestCopyWithImpl<$Res>
     Object? serviceType = null,
     Object? amount = null,
     Object? status = null,
-    Object? serviceLocation = null,
+    Object? origin = null,
     Object? destination = null,
+    Object? requestDate = null,
     Object? date = null,
   }) {
     return _then(_$_ServiceRequest(
@@ -238,14 +255,18 @@ class __$$_ServiceRequestCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as RequestStatus,
-      serviceLocation: null == serviceLocation
-          ? _value.serviceLocation
-          : serviceLocation // ignore: cast_nullable_to_non_nullable
+      origin: null == origin
+          ? _value.origin
+          : origin // ignore: cast_nullable_to_non_nullable
               as Address,
       destination: null == destination
           ? _value.destination
           : destination // ignore: cast_nullable_to_non_nullable
               as Address,
+      requestDate: null == requestDate
+          ? _value.requestDate
+          : requestDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -264,8 +285,12 @@ class _$_ServiceRequest implements _ServiceRequest {
       required this.serviceType,
       required this.amount,
       required this.status,
-      required this.serviceLocation,
+      required this.origin,
       required this.destination,
+      @JsonKey(
+          readValue: JsonConverterWrapper.date,
+          toJson: JsonConverterWrapper.toJson)
+      required this.requestDate,
       @JsonKey(
           readValue: JsonConverterWrapper.date,
           toJson: JsonConverterWrapper.toJson)
@@ -287,9 +312,13 @@ class _$_ServiceRequest implements _ServiceRequest {
   @override
   final RequestStatus status;
   @override
-  final Address serviceLocation;
+  final Address origin;
   @override
   final Address destination;
+  @override
+  @JsonKey(
+      readValue: JsonConverterWrapper.date, toJson: JsonConverterWrapper.toJson)
+  final DateTime requestDate;
   @override
   @JsonKey(
       readValue: JsonConverterWrapper.date, toJson: JsonConverterWrapper.toJson)
@@ -297,7 +326,7 @@ class _$_ServiceRequest implements _ServiceRequest {
 
   @override
   String toString() {
-    return 'ServiceRequest(id: $id, requester: $requester, servicer: $servicer, serviceType: $serviceType, amount: $amount, status: $status, serviceLocation: $serviceLocation, destination: $destination, date: $date)';
+    return 'ServiceRequest(id: $id, requester: $requester, servicer: $servicer, serviceType: $serviceType, amount: $amount, status: $status, origin: $origin, destination: $destination, requestDate: $requestDate, date: $date)';
   }
 
   @override
@@ -314,17 +343,18 @@ class _$_ServiceRequest implements _ServiceRequest {
                 other.serviceType == serviceType) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.serviceLocation, serviceLocation) ||
-                other.serviceLocation == serviceLocation) &&
+            (identical(other.origin, origin) || other.origin == origin) &&
             (identical(other.destination, destination) ||
                 other.destination == destination) &&
+            (identical(other.requestDate, requestDate) ||
+                other.requestDate == requestDate) &&
             (identical(other.date, date) || other.date == date));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, requester, servicer,
-      serviceType, amount, status, serviceLocation, destination, date);
+      serviceType, amount, status, origin, destination, requestDate, date);
 
   @JsonKey(ignore: true)
   @override
@@ -348,8 +378,12 @@ abstract class _ServiceRequest implements ServiceRequest {
       required final ServiceType serviceType,
       required final double amount,
       required final RequestStatus status,
-      required final Address serviceLocation,
+      required final Address origin,
       required final Address destination,
+      @JsonKey(
+          readValue: JsonConverterWrapper.date,
+          toJson: JsonConverterWrapper.toJson)
+      required final DateTime requestDate,
       @JsonKey(
           readValue: JsonConverterWrapper.date,
           toJson: JsonConverterWrapper.toJson)
@@ -371,9 +405,13 @@ abstract class _ServiceRequest implements ServiceRequest {
   @override
   RequestStatus get status;
   @override
-  Address get serviceLocation;
+  Address get origin;
   @override
   Address get destination;
+  @override
+  @JsonKey(
+      readValue: JsonConverterWrapper.date, toJson: JsonConverterWrapper.toJson)
+  DateTime get requestDate;
   @override
   @JsonKey(
       readValue: JsonConverterWrapper.date, toJson: JsonConverterWrapper.toJson)

@@ -14,10 +14,11 @@ _$_ServiceRequest _$$_ServiceRequestFromJson(Map<String, dynamic> json) =>
       serviceType: $enumDecode(_$ServiceTypeEnumMap, json['serviceType']),
       amount: (json['amount'] as num).toDouble(),
       status: $enumDecode(_$RequestStatusEnumMap, json['status']),
-      serviceLocation:
-          Address.fromJson(json['serviceLocation'] as Map<String, dynamic>),
+      origin: Address.fromJson(json['origin'] as Map<String, dynamic>),
       destination:
           Address.fromJson(json['destination'] as Map<String, dynamic>),
+      requestDate: DateTime.parse(
+          JsonConverterWrapper.date(json, 'requestDate') as String),
       date: DateTime.parse(JsonConverterWrapper.date(json, 'date') as String),
     );
 
@@ -29,18 +30,23 @@ Map<String, dynamic> _$$_ServiceRequestToJson(_$_ServiceRequest instance) =>
       'serviceType': _$ServiceTypeEnumMap[instance.serviceType]!,
       'amount': instance.amount,
       'status': _$RequestStatusEnumMap[instance.status]!,
-      'serviceLocation': instance.serviceLocation,
+      'origin': instance.origin,
       'destination': instance.destination,
+      'requestDate': JsonConverterWrapper.toJson(instance.requestDate),
       'date': JsonConverterWrapper.toJson(instance.date),
     };
 
 const _$ServiceTypeEnumMap = {
-  ServiceType.mechanic: 'mechanic',
+  ServiceType.mechanicRequest: 'mechanicRequest',
   ServiceType.towing: 'towing',
+  ServiceType.merchanicShop: 'merchanicShop',
+  ServiceType.none: 'none',
 };
 
 const _$RequestStatusEnumMap = {
-  RequestStatus.active: 'active',
+  RequestStatus.requested: 'requested',
+  RequestStatus.inProgress: 'inProgress',
+  RequestStatus.none: 'none',
   RequestStatus.cancelled: 'cancelled',
   RequestStatus.completed: 'completed',
 };

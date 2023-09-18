@@ -22,6 +22,11 @@ MapServiceState _$MapServiceStateFromJson(Map<String, dynamic> json) {
 mixin _$MapServiceState {
   Address? get pickUpLocation => throw _privateConstructorUsedError;
   Address? get dropOffLocation => throw _privateConstructorUsedError;
+  Vehicle? get vehicle => throw _privateConstructorUsedError;
+  String get currentEventId => throw _privateConstructorUsedError;
+  ServiceType get serviceType => throw _privateConstructorUsedError;
+  ServiceRequest get serviceRequest => throw _privateConstructorUsedError;
+  bool get loading => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,10 +40,19 @@ abstract class $MapServiceStateCopyWith<$Res> {
           MapServiceState value, $Res Function(MapServiceState) then) =
       _$MapServiceStateCopyWithImpl<$Res, MapServiceState>;
   @useResult
-  $Res call({Address? pickUpLocation, Address? dropOffLocation});
+  $Res call(
+      {Address? pickUpLocation,
+      Address? dropOffLocation,
+      Vehicle? vehicle,
+      String currentEventId,
+      ServiceType serviceType,
+      ServiceRequest serviceRequest,
+      bool loading});
 
   $AddressCopyWith<$Res>? get pickUpLocation;
   $AddressCopyWith<$Res>? get dropOffLocation;
+  $VehicleCopyWith<$Res>? get vehicle;
+  $ServiceRequestCopyWith<$Res> get serviceRequest;
 }
 
 /// @nodoc
@@ -56,6 +70,11 @@ class _$MapServiceStateCopyWithImpl<$Res, $Val extends MapServiceState>
   $Res call({
     Object? pickUpLocation = freezed,
     Object? dropOffLocation = freezed,
+    Object? vehicle = freezed,
+    Object? currentEventId = null,
+    Object? serviceType = null,
+    Object? serviceRequest = null,
+    Object? loading = null,
   }) {
     return _then(_value.copyWith(
       pickUpLocation: freezed == pickUpLocation
@@ -66,6 +85,26 @@ class _$MapServiceStateCopyWithImpl<$Res, $Val extends MapServiceState>
           ? _value.dropOffLocation
           : dropOffLocation // ignore: cast_nullable_to_non_nullable
               as Address?,
+      vehicle: freezed == vehicle
+          ? _value.vehicle
+          : vehicle // ignore: cast_nullable_to_non_nullable
+              as Vehicle?,
+      currentEventId: null == currentEventId
+          ? _value.currentEventId
+          : currentEventId // ignore: cast_nullable_to_non_nullable
+              as String,
+      serviceType: null == serviceType
+          ? _value.serviceType
+          : serviceType // ignore: cast_nullable_to_non_nullable
+              as ServiceType,
+      serviceRequest: null == serviceRequest
+          ? _value.serviceRequest
+          : serviceRequest // ignore: cast_nullable_to_non_nullable
+              as ServiceRequest,
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -92,6 +131,26 @@ class _$MapServiceStateCopyWithImpl<$Res, $Val extends MapServiceState>
       return _then(_value.copyWith(dropOffLocation: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $VehicleCopyWith<$Res>? get vehicle {
+    if (_value.vehicle == null) {
+      return null;
+    }
+
+    return $VehicleCopyWith<$Res>(_value.vehicle!, (value) {
+      return _then(_value.copyWith(vehicle: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ServiceRequestCopyWith<$Res> get serviceRequest {
+    return $ServiceRequestCopyWith<$Res>(_value.serviceRequest, (value) {
+      return _then(_value.copyWith(serviceRequest: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -102,12 +161,23 @@ abstract class _$$_MapServiceStateCopyWith<$Res>
       __$$_MapServiceStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Address? pickUpLocation, Address? dropOffLocation});
+  $Res call(
+      {Address? pickUpLocation,
+      Address? dropOffLocation,
+      Vehicle? vehicle,
+      String currentEventId,
+      ServiceType serviceType,
+      ServiceRequest serviceRequest,
+      bool loading});
 
   @override
   $AddressCopyWith<$Res>? get pickUpLocation;
   @override
   $AddressCopyWith<$Res>? get dropOffLocation;
+  @override
+  $VehicleCopyWith<$Res>? get vehicle;
+  @override
+  $ServiceRequestCopyWith<$Res> get serviceRequest;
 }
 
 /// @nodoc
@@ -123,6 +193,11 @@ class __$$_MapServiceStateCopyWithImpl<$Res>
   $Res call({
     Object? pickUpLocation = freezed,
     Object? dropOffLocation = freezed,
+    Object? vehicle = freezed,
+    Object? currentEventId = null,
+    Object? serviceType = null,
+    Object? serviceRequest = null,
+    Object? loading = null,
   }) {
     return _then(_$_MapServiceState(
       pickUpLocation: freezed == pickUpLocation
@@ -133,6 +208,26 @@ class __$$_MapServiceStateCopyWithImpl<$Res>
           ? _value.dropOffLocation
           : dropOffLocation // ignore: cast_nullable_to_non_nullable
               as Address?,
+      vehicle: freezed == vehicle
+          ? _value.vehicle
+          : vehicle // ignore: cast_nullable_to_non_nullable
+              as Vehicle?,
+      currentEventId: null == currentEventId
+          ? _value.currentEventId
+          : currentEventId // ignore: cast_nullable_to_non_nullable
+              as String,
+      serviceType: null == serviceType
+          ? _value.serviceType
+          : serviceType // ignore: cast_nullable_to_non_nullable
+              as ServiceType,
+      serviceRequest: null == serviceRequest
+          ? _value.serviceRequest
+          : serviceRequest // ignore: cast_nullable_to_non_nullable
+              as ServiceRequest,
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -141,7 +236,13 @@ class __$$_MapServiceStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MapServiceState implements _MapServiceState {
   _$_MapServiceState(
-      {required this.pickUpLocation, required this.dropOffLocation});
+      {required this.pickUpLocation,
+      required this.dropOffLocation,
+      required this.vehicle,
+      required this.currentEventId,
+      required this.serviceType,
+      required this.serviceRequest,
+      required this.loading});
 
   factory _$_MapServiceState.fromJson(Map<String, dynamic> json) =>
       _$$_MapServiceStateFromJson(json);
@@ -150,10 +251,20 @@ class _$_MapServiceState implements _MapServiceState {
   final Address? pickUpLocation;
   @override
   final Address? dropOffLocation;
+  @override
+  final Vehicle? vehicle;
+  @override
+  final String currentEventId;
+  @override
+  final ServiceType serviceType;
+  @override
+  final ServiceRequest serviceRequest;
+  @override
+  final bool loading;
 
   @override
   String toString() {
-    return 'MapServiceState(pickUpLocation: $pickUpLocation, dropOffLocation: $dropOffLocation)';
+    return 'MapServiceState(pickUpLocation: $pickUpLocation, dropOffLocation: $dropOffLocation, vehicle: $vehicle, currentEventId: $currentEventId, serviceType: $serviceType, serviceRequest: $serviceRequest, loading: $loading)';
   }
 
   @override
@@ -164,12 +275,21 @@ class _$_MapServiceState implements _MapServiceState {
             (identical(other.pickUpLocation, pickUpLocation) ||
                 other.pickUpLocation == pickUpLocation) &&
             (identical(other.dropOffLocation, dropOffLocation) ||
-                other.dropOffLocation == dropOffLocation));
+                other.dropOffLocation == dropOffLocation) &&
+            (identical(other.vehicle, vehicle) || other.vehicle == vehicle) &&
+            (identical(other.currentEventId, currentEventId) ||
+                other.currentEventId == currentEventId) &&
+            (identical(other.serviceType, serviceType) ||
+                other.serviceType == serviceType) &&
+            (identical(other.serviceRequest, serviceRequest) ||
+                other.serviceRequest == serviceRequest) &&
+            (identical(other.loading, loading) || other.loading == loading));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, pickUpLocation, dropOffLocation);
+  int get hashCode => Object.hash(runtimeType, pickUpLocation, dropOffLocation,
+      vehicle, currentEventId, serviceType, serviceRequest, loading);
 
   @JsonKey(ignore: true)
   @override
@@ -188,7 +308,12 @@ class _$_MapServiceState implements _MapServiceState {
 abstract class _MapServiceState implements MapServiceState {
   factory _MapServiceState(
       {required final Address? pickUpLocation,
-      required final Address? dropOffLocation}) = _$_MapServiceState;
+      required final Address? dropOffLocation,
+      required final Vehicle? vehicle,
+      required final String currentEventId,
+      required final ServiceType serviceType,
+      required final ServiceRequest serviceRequest,
+      required final bool loading}) = _$_MapServiceState;
 
   factory _MapServiceState.fromJson(Map<String, dynamic> json) =
       _$_MapServiceState.fromJson;
@@ -197,6 +322,16 @@ abstract class _MapServiceState implements MapServiceState {
   Address? get pickUpLocation;
   @override
   Address? get dropOffLocation;
+  @override
+  Vehicle? get vehicle;
+  @override
+  String get currentEventId;
+  @override
+  ServiceType get serviceType;
+  @override
+  ServiceRequest get serviceRequest;
+  @override
+  bool get loading;
   @override
   @JsonKey(ignore: true)
   _$$_MapServiceStateCopyWith<_$_MapServiceState> get copyWith =>

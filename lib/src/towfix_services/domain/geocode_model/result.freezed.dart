@@ -46,14 +46,11 @@ abstract class $GeocodeResultCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'address_components')
-          List<AddressComponent>? addressComponents,
-      @JsonKey(name: 'formatted_address')
-          String? formattedAddress,
+      List<AddressComponent>? addressComponents,
+      @JsonKey(name: 'formatted_address') String? formattedAddress,
       Geometry? geometry,
-      @JsonKey(name: 'place_id')
-          String? placeId,
-      @JsonKey(name: 'plus_code')
-          PlusCode? plusCode,
+      @JsonKey(name: 'place_id') String? placeId,
+      @JsonKey(name: 'plus_code') PlusCode? plusCode,
       List<String>? types});
 
   $GeometryCopyWith<$Res>? get geometry;
@@ -143,14 +140,11 @@ abstract class _$$_GeocodeResultCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'address_components')
-          List<AddressComponent>? addressComponents,
-      @JsonKey(name: 'formatted_address')
-          String? formattedAddress,
+      List<AddressComponent>? addressComponents,
+      @JsonKey(name: 'formatted_address') String? formattedAddress,
       Geometry? geometry,
-      @JsonKey(name: 'place_id')
-          String? placeId,
-      @JsonKey(name: 'plus_code')
-          PlusCode? plusCode,
+      @JsonKey(name: 'place_id') String? placeId,
+      @JsonKey(name: 'plus_code') PlusCode? plusCode,
       List<String>? types});
 
   @override
@@ -211,14 +205,11 @@ class __$$_GeocodeResultCopyWithImpl<$Res>
 class _$_GeocodeResult implements _GeocodeResult {
   _$_GeocodeResult(
       {@JsonKey(name: 'address_components')
-          final List<AddressComponent>? addressComponents,
-      @JsonKey(name: 'formatted_address')
-          this.formattedAddress,
+      final List<AddressComponent>? addressComponents,
+      @JsonKey(name: 'formatted_address') this.formattedAddress,
       this.geometry,
-      @JsonKey(name: 'place_id')
-          this.placeId,
-      @JsonKey(name: 'plus_code')
-          this.plusCode,
+      @JsonKey(name: 'place_id') this.placeId,
+      @JsonKey(name: 'plus_code') this.plusCode,
       final List<String>? types})
       : _addressComponents = addressComponents,
         _types = types;
@@ -309,14 +300,11 @@ class _$_GeocodeResult implements _GeocodeResult {
 abstract class _GeocodeResult implements GeocodeResult {
   factory _GeocodeResult(
       {@JsonKey(name: 'address_components')
-          final List<AddressComponent>? addressComponents,
-      @JsonKey(name: 'formatted_address')
-          final String? formattedAddress,
+      final List<AddressComponent>? addressComponents,
+      @JsonKey(name: 'formatted_address') final String? formattedAddress,
       final Geometry? geometry,
-      @JsonKey(name: 'place_id')
-          final String? placeId,
-      @JsonKey(name: 'plus_code')
-          final PlusCode? plusCode,
+      @JsonKey(name: 'place_id') final String? placeId,
+      @JsonKey(name: 'plus_code') final PlusCode? plusCode,
       final List<String>? types}) = _$_GeocodeResult;
 
   factory _GeocodeResult.fromJson(Map<String, dynamic> json) =

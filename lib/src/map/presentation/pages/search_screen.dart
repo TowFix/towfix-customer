@@ -255,7 +255,7 @@ class Dash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 2),
+      margin: const EdgeInsets.only(top: 2),
       width: 2,
       height: 10,
       decoration: BoxDecoration(color: context.primaryColor),
@@ -289,7 +289,7 @@ class NearByMechanicShops extends StatelessWidget {
             return ListTile(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => SelectTowTruckPage()));
+                    builder: (context) => const SelectTowTruckPage()));
               },
               leading: Icon(
                 Icons.location_on,

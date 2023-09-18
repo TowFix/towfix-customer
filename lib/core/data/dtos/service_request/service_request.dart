@@ -16,10 +16,16 @@ class ServiceRequest with _$ServiceRequest {
       required ServiceType serviceType,
       required double amount,
       required RequestStatus status,
-      required Address serviceLocation,
+      required Address origin,
       required Address destination,
-      @JsonKey(readValue: JsonConverterWrapper.date, toJson: JsonConverterWrapper.toJson)
-          required DateTime date}) = _ServiceRequest;
+      @JsonKey(
+          readValue: JsonConverterWrapper.date,
+          toJson: JsonConverterWrapper.toJson)
+      required DateTime requestDate,
+      @JsonKey(
+          readValue: JsonConverterWrapper.date,
+          toJson: JsonConverterWrapper.toJson)
+      required DateTime date}) = _ServiceRequest;
 
   factory ServiceRequest.fromJson(Map<String, dynamic> json) =>
       _$ServiceRequestFromJson(json);
@@ -31,19 +37,28 @@ class ServiceRequest with _$ServiceRequest {
         serviceType: ServiceType.towing,
         amount: 0.0,
         destination: Address.initial(),
-        serviceLocation: Address.initial(),
-        status: RequestStatus.active,
+        origin: Address.initial(),
+        status: RequestStatus.none,
+        requestDate: DateTime.now(),
         date: DateTime(2023),
       );
 }
 
 enum ServiceType {
-  mechanic,
+  @JsonValue('mechanicRequest')
+  mechanicRequest,
+  @JsonValue('towing')
   towing,
+  @JsonValue('merchanicShop')
+  merchanicShop,
+  @JsonValue('none')
+  none,
 }
 
 enum RequestStatus {
-  active,
+  requested,
+  inProgress,
+  none,
   cancelled,
   completed,
 }

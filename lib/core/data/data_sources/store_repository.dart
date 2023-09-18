@@ -32,6 +32,10 @@ abstract class DatabaseRepository {
   //[getServiceRequestDetails] gets details on a particular service
   Stream<Either<Failure, ServiceRequest>> getServiceRequestDetails(String id);
 
+  // * create service request
+  Future<Either<Failure, ServiceRequest>> createServiceRequest(
+      ServiceRequest request);
+
   ///* create vehicle
   Future<Either<Failure, Vehicle>> createVehicle(Vehicle vehicle);
 
@@ -51,7 +55,7 @@ class FirestoreDatabaseRepositoryImpl implements DatabaseRepository {
   final FirebaseStorage firebaseStorage;
 
   final profileCollectionPath = 'profiles';
-  final serviceRequestCollectionPath = 'service-request';
+  final serviceRequestCollectionPath = 'service-requests';
   final vehicletCollectionPath = 'vehicles';
 
   @override
@@ -176,37 +180,35 @@ class FirestoreDatabaseRepositoryImpl implements DatabaseRepository {
 
   @override
   Future<Either<Failure, Vehicle>> createVehicle(Vehicle vehicle) async {
-    {
-      try {
-        final uid = firestore.collection(vehicletCollectionPath).doc().id;
-        // final map = {'id': uid, 'createdAt': FieldValue.serverTimestamp()};
-        final data = {
-          'id': uid,
-          'brand': vehicle.brand,
-          'model': vehicle.model,
-          'color': vehicle.color,
-          'numberPlate': vehicle.numberPlate,
-          'extraInfo': vehicle.extraInfo,
-          'user': vehicle.user.toJson(),
-          'image': vehicle.image,
-          'date': FieldValue.serverTimestamp()
-        };
-        await firestore.collection(vehicletCollectionPath).doc(uid).set(data);
+    try {
+      final uid = firestore.collection(vehicletCollectionPath).doc().id;
+      // final map = {'id': uid, 'createdAt': FieldValue.serverTimestamp()};
+      final data = {
+        'id': uid,
+        'brand': vehicle.brand,
+        'model': vehicle.model,
+        'color': vehicle.color,
+        'numberPlate': vehicle.numberPlate,
+        'extraInfo': vehicle.extraInfo,
+        'user': vehicle.user.toJson(),
+        'image': vehicle.image,
+        'date': FieldValue.serverTimestamp()
+      };
+      await firestore.collection(vehicletCollectionPath).doc(uid).set(data);
 
-        // final toJson = vehicle.toJson()..addAll(map);
+      // final toJson = vehicle.toJson()..addAll(map);
 
-        return Right(Vehicle.fromJson(data));
-      } on FirebaseException catch (e) {
-        log('$e', error: e, name: 'createVehicle Firebase EXCEPTION');
+      return Right(Vehicle.fromJson(data));
+    } on FirebaseException catch (e) {
+      log('$e', error: e, name: 'createVehicle Firebase EXCEPTION');
 
-        return const Left(
-            Failure.exception(message: 'Error creating vehicle info'));
-      } catch (e) {
-        log('$e', error: e, name: 'createVehicle');
+      return const Left(
+          Failure.exception(message: 'Error creating vehicle info'));
+    } catch (e) {
+      log('$e', error: e, name: 'createVehicle');
 
-        return const Left(
-            Failure.exception(message: 'Error updateProfile profile info'));
-      }
+      return const Left(
+          Failure.exception(message: 'Error updateProfile profile info'));
     }
   }
 
@@ -255,6 +257,45 @@ class FirestoreDatabaseRepositoryImpl implements DatabaseRepository {
 
       return const Left(
           Failure.exception(message: 'Ooops, something went wrong'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ServiceRequest>> createServiceRequest(
+      ServiceRequest request) async {
+    try {
+      final uid = firestore.collection(vehicletCollectionPath).doc().id;
+      // final map = {'id': uid, 'createdAt': FieldValue.serverTimestamp()};
+      final data = {
+        'id': uid,
+        'requester': request.requester.toJson(),
+        'servicer': request.servicer.toJson(),
+        'serviceType': request.serviceType.name,
+        'amount': request.amount,
+        'status': request.status.name,
+        'origin': request.origin.toJson(),
+        'destination': request.destination.toJson(),
+        'requestDate': Timestamp.fromDate(request.requestDate),
+        'date': FieldValue.serverTimestamp()
+      };
+      log('createServiceRequest : \n $data');
+      await firestore
+          .collection(serviceRequestCollectionPath)
+          .doc(uid)
+          .set(data);
+
+      // final toJson = vehicle.toJson()..addAll(map);
+
+      return Right(ServiceRequest.fromJson(data));
+    } on FirebaseException catch (e) {
+      log('$e', error: e, name: 'createServiceRequest Firebase EXCEPTION');
+
+      return Left(Failure.exception(message: '${e.message}'));
+    } catch (e) {
+      log('$e', error: e, name: 'createServiceRequest');
+
+      return const Left(Failure.exception(
+          message: 'Ooops, something went wrong, please try again later.'));
     }
   }
 }

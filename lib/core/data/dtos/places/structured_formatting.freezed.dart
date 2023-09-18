@@ -41,12 +41,10 @@ abstract class $StructuredFormattingCopyWith<$Res> {
       _$StructuredFormattingCopyWithImpl<$Res, StructuredFormatting>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'main_text')
-          String? mainText,
+      {@JsonKey(name: 'main_text') String? mainText,
       @JsonKey(name: 'main_text_matched_substrings')
-          List<MainTextMatchedSubstring>? mainTextMatchedSubstrings,
-      @JsonKey(name: 'secondary_text')
-          String? secondaryText});
+      List<MainTextMatchedSubstring>? mainTextMatchedSubstrings,
+      @JsonKey(name: 'secondary_text') String? secondaryText});
 }
 
 /// @nodoc
@@ -93,12 +91,10 @@ abstract class _$$_StructuredFormattingCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'main_text')
-          String? mainText,
+      {@JsonKey(name: 'main_text') String? mainText,
       @JsonKey(name: 'main_text_matched_substrings')
-          List<MainTextMatchedSubstring>? mainTextMatchedSubstrings,
-      @JsonKey(name: 'secondary_text')
-          String? secondaryText});
+      List<MainTextMatchedSubstring>? mainTextMatchedSubstrings,
+      @JsonKey(name: 'secondary_text') String? secondaryText});
 }
 
 /// @nodoc
@@ -137,12 +133,10 @@ class __$$_StructuredFormattingCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_StructuredFormatting implements _StructuredFormatting {
   _$_StructuredFormatting(
-      {@JsonKey(name: 'main_text')
-          this.mainText,
+      {@JsonKey(name: 'main_text') this.mainText,
       @JsonKey(name: 'main_text_matched_substrings')
-          final List<MainTextMatchedSubstring>? mainTextMatchedSubstrings,
-      @JsonKey(name: 'secondary_text')
-          this.secondaryText})
+      final List<MainTextMatchedSubstring>? mainTextMatchedSubstrings,
+      @JsonKey(name: 'secondary_text') this.secondaryText})
       : _mainTextMatchedSubstrings = mainTextMatchedSubstrings;
 
   factory _$_StructuredFormatting.fromJson(Map<String, dynamic> json) =>
@@ -210,12 +204,11 @@ class _$_StructuredFormatting implements _StructuredFormatting {
 
 abstract class _StructuredFormatting implements StructuredFormatting {
   factory _StructuredFormatting(
-      {@JsonKey(name: 'main_text')
-          final String? mainText,
-      @JsonKey(name: 'main_text_matched_substrings')
+          {@JsonKey(name: 'main_text') final String? mainText,
+          @JsonKey(name: 'main_text_matched_substrings')
           final List<MainTextMatchedSubstring>? mainTextMatchedSubstrings,
-      @JsonKey(name: 'secondary_text')
-          final String? secondaryText}) = _$_StructuredFormatting;
+          @JsonKey(name: 'secondary_text') final String? secondaryText}) =
+      _$_StructuredFormatting;
 
   factory _StructuredFormatting.fromJson(Map<String, dynamic> json) =
       _$_StructuredFormatting.fromJson;
